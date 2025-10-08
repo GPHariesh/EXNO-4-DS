@@ -24,6 +24,244 @@ The feature selection techniques used are:
 3.Embedded Method
 
 # CODING AND OUTPUT:
-       # INCLUDE YOUR CODING AND OUTPUT SCREENSHOTS HERE
+
+```
+ import pandas as pd
+ import numpy as np
+ import seaborn as sns
+ from sklearn.model_selection import train_test_split
+ from sklearn.neighbors import KNeighborsClassifier
+ from sklearn.metrics import accuracy_score, confusion_matrix
+ data=pd.read_csv("income.csv",na_values=[ " ?"])
+ data
+```
+<img width="907" height="261" alt="image" src="https://github.com/user-attachments/assets/42421e90-1db4-459f-94f5-ab7b0b72a62d" />
+
+```
+data.isnull().sum()
+```
+<img width="241" height="317" alt="image" src="https://github.com/user-attachments/assets/22dd6c9d-b756-4c23-88c2-e821d0f293a2" />
+
+```
+ missing=data[data.isnull().any(axis=1)]
+ missing
+```
+
+
+```
+ data2=data.dropna(axis=0)
+ data2
+```
+
+
+```
+ sal=data["SalStat"]
+ data2["SalStat"]=data["SalStat"].map({' less than or equal to 50,000':0,' greater than 50,000':1})
+ print(data2['SalStat'])
+```
+
+
+```
+  sal2=data2['SalStat']
+ dfs=pd.concat([sal,sal2],axis=1)
+ dfs
+```
+
+
+```
+  data2
+```
+
+
+
+```
+   new_data=pd.get_dummies(data2, drop_first=True)
+ new_data
+```
+
+
+
+```
+ columns_list=list(new_data.columns)
+ print(columns_list)
+```
+
+
+
+```
+ features=list(set(columns_list)-set(['SalStat']))
+ print(features)
+```
+
+
+
+```
+ y=new_data['SalStat'].values
+ print(y)
+```                                                                         
+
+
+
+
+
+```
+x=new_data[features].values
+print(x)
+```
+
+
+```
+ train_x,test_x,train_y,test_y=train_test_split(x,y,test_size=0.3,random_state=0)
+ KNN_classifier=KNeighborsClassifier(n_neighbors = 5)
+ KNN_classifier.fit(train_x,train_y)
+ prediction=KNN_classifier.predict(test_x)
+ confusionMatrix=confusion_matrix(test_y, prediction)
+ print(confusionMatrix)
+```
+
+
+
+
+
+```
+ accuracy_score=accuracy_score(test_y,prediction)
+ print(accuracy_score)
+```
+
+
+
+
+
+
+```
+  print("Misclassified Samples : %d" % (test_y !=prediction).sum())
+```
+
+
+
+
+```
+  data.shape
+```
+
+
+
+```  
+ import pandas as pd
+ from sklearn.feature_selection import SelectKBest, mutual_info_classif, f_classif
+ data={
+ 'Feature1': [1,2,3,4,5],
+ 'Feature2': ['A','B','C','A','B'],
+ 'Feature3': [0,1,1,0,1],
+ 'Target'  : [0,1,1,0,1]
+ }
+ df=pd.DataFrame(data)
+ x=df[['Feature1','Feature3']]
+ y=df[['Target']]
+ selector=SelectKBest(score_func=mutual_info_classif,k=1)
+ x_new=selector.fit_transform(x,y)
+ selected_feature_indices=selector.get_support(indices=True)
+ selected_features=x.columns[selected_feature_indices]
+ print("Selected Features:")
+ print(selected_features)
+```
+
+
+
+```
+ import pandas as pd
+ import numpy as np
+ from scipy.stats import chi2_contingency
+ import seaborn as sns
+ tips=sns.load_dataset('tips')
+ tips.head()
+```
+
+
+ ```
+tips.time.unique()
+```
+
+
+```
+ contingency_table=pd.crosstab(tips['sex'],tips['time'])
+ print(contingency_table)
+```
+
+ ``` 
+ chi2,p,_,_=chi2_contingency(contingency_table)
+ print(f"Chi-Square Statistics: {chi2}")
+ print(f"P-Value: {p}")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # RESULT:
-       # INCLUDE YOUR RESULT HERE
+       
