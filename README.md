@@ -46,12 +46,14 @@ data.isnull().sum()
  missing=data[data.isnull().any(axis=1)]
  missing
 ```
+<img width="1772" height="727" alt="image" src="https://github.com/user-attachments/assets/75045767-558a-4e75-941c-1a12dcce7699" />
 
 
 ```
  data2=data.dropna(axis=0)
  data2
 ```
+<img width="1629" height="477" alt="image" src="https://github.com/user-attachments/assets/27426cd4-0b4f-47f2-ae52-51e72a6b10a1" />
 
 
 ```
@@ -59,6 +61,7 @@ data.isnull().sum()
  data2["SalStat"]=data["SalStat"].map({' less than or equal to 50,000':0,' greater than 50,000':1})
  print(data2['SalStat'])
 ```
+<img width="1422" height="376" alt="image" src="https://github.com/user-attachments/assets/3e50d230-3bef-4f05-88ee-5494f7d53dc0" />
 
 
 ```
@@ -66,11 +69,13 @@ data.isnull().sum()
  dfs=pd.concat([sal,sal2],axis=1)
  dfs
 ```
+<img width="525" height="459" alt="image" src="https://github.com/user-attachments/assets/0bb4f585-a6c7-4c89-9110-e67af8fe7821" />
 
 
 ```
   data2
 ```
+<img width="1539" height="475" alt="image" src="https://github.com/user-attachments/assets/321d539d-0115-40e9-aec9-e4cc02f1c36c" />
 
 
 
@@ -78,6 +83,7 @@ data.isnull().sum()
    new_data=pd.get_dummies(data2, drop_first=True)
  new_data
 ```
+<img width="1850" height="271" alt="image" src="https://github.com/user-attachments/assets/af86e223-4f9e-491d-b0b3-04d102bc8cdd" />
 
 
 
@@ -86,12 +92,14 @@ data.isnull().sum()
  print(columns_list)
 ```
 
+<img width="1856" height="66" alt="image" src="https://github.com/user-attachments/assets/f9b20bcc-d479-461a-a8dd-02febdc388e6" />
 
 
 ```
  features=list(set(columns_list)-set(['SalStat']))
  print(features)
 ```
+<img width="1861" height="64" alt="image" src="https://github.com/user-attachments/assets/8c3f7f4e-b58f-4deb-84a5-b70a1f697d93" />
 
 
 
@@ -99,6 +107,7 @@ data.isnull().sum()
  y=new_data['SalStat'].values
  print(y)
 ```                                                                         
+<img width="329" height="85" alt="image" src="https://github.com/user-attachments/assets/855b7842-7c03-42ab-8ad0-ecf33eec7dbb" />
 
 
 
@@ -108,6 +117,7 @@ data.isnull().sum()
 x=new_data[features].values
 print(x)
 ```
+<img width="477" height="133" alt="image" src="https://github.com/user-attachments/assets/3f6b4f2b-3498-42bd-94c0-8d68022dfa3b" />
 
 
 ```
@@ -118,6 +128,7 @@ print(x)
  confusionMatrix=confusion_matrix(test_y, prediction)
  print(confusionMatrix)
 ```
+<img width="207" height="46" alt="image" src="https://github.com/user-attachments/assets/f905c727-23aa-4b62-a2fd-ceb782cb420e" />
 
 
 
@@ -128,6 +139,7 @@ print(x)
  print(accuracy_score)
 ```
 
+<img width="234" height="32" alt="image" src="https://github.com/user-attachments/assets/76c1fd4d-ff52-4eb4-b0ed-28e1d18f9d93" />
 
 
 
@@ -136,6 +148,7 @@ print(x)
 ```
   print("Misclassified Samples : %d" % (test_y !=prediction).sum())
 ```
+<img width="288" height="36" alt="image" src="https://github.com/user-attachments/assets/78ce0b87-99ec-405f-a8f9-00eab170f1aa" />
 
 
 
@@ -143,6 +156,7 @@ print(x)
 ```
   data.shape
 ```
+<img width="139" height="25" alt="image" src="https://github.com/user-attachments/assets/85bb71a1-81db-4640-9838-2fc7525abd33" />
 
 
 
@@ -165,6 +179,7 @@ print(x)
  print("Selected Features:")
  print(selected_features)
 ```
+<img width="1706" height="81" alt="image" src="https://github.com/user-attachments/assets/54229f53-56d8-4e7e-8a50-efad997b1e60" />
 
 
 
@@ -176,23 +191,29 @@ print(x)
  tips=sns.load_dataset('tips')
  tips.head()
 ```
+<img width="543" height="190" alt="image" src="https://github.com/user-attachments/assets/87f506f3-3c95-481b-8020-e100a478ee40" />
 
 
  ```
 tips.time.unique()
 ```
+<img width="387" height="54" alt="image" src="https://github.com/user-attachments/assets/e4013577-2d95-40b9-aee9-0ce12837410d" />
 
 
 ```
  contingency_table=pd.crosstab(tips['sex'],tips['time'])
  print(contingency_table)
 ```
+<img width="239" height="84" alt="image" src="https://github.com/user-attachments/assets/0ae5b384-b875-48b3-a2ca-5a5e90a023a8" />
+
+
 
  ``` 
  chi2,p,_,_=chi2_contingency(contingency_table)
  print(f"Chi-Square Statistics: {chi2}")
  print(f"P-Value: {p}")
 ```
+<img width="380" height="45" alt="image" src="https://github.com/user-attachments/assets/b2f7c8a4-42c1-4ec1-ba69-ab99fa40b8ce" />
 
 
 
